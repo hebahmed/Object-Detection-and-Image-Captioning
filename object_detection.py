@@ -19,7 +19,7 @@ def detect_objects(image):
 
         # Processing the results to get the detected objects
         target_sizes = torch.tensor([image.size[::-1]])
-        results = processor.post_process_object_detection(outputs, target_sizes=target_sizes, threshold=0.9)[0]
+        results = processor.post_process_object_detection(outputs, target_sizes=target_sizes, threshold=0.5)[0]
 
         detected_objects = []
         for score, label in zip(results["scores"], results["labels"]):
