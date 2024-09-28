@@ -1,12 +1,12 @@
-from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
+from transformers import AutoModelForVision2Seq, ViTImageProcessor, AutoTokenizer
 import torch
 
 def generate_caption(image):
     try:
         print("Image shape:", image.size)
         
-        # استخدم AutoModelForVision2Seq للتوافق مع الإصدارات القادمة
-        model = VisionEncoderDecoderModel.from_pretrained('nlpconnect/vit-gpt2-image-captioning')
+        # استخدم AutoModelForVision2Seq بدلاً من VisionEncoderDecoderModel
+        model = AutoModelForVision2Seq.from_pretrained('nlpconnect/vit-gpt2-image-captioning')
         processor = ViTImageProcessor.from_pretrained('nlpconnect/vit-gpt2-image-captioning')
         tokenizer = AutoTokenizer.from_pretrained('nlpconnect/vit-gpt2-image-captioning')
 
