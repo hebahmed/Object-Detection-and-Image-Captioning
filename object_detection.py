@@ -6,8 +6,8 @@ from PIL import Image
 def detect_objects(image):
     try:
         # Load Object Detection Model on CPU
-        processor = DetrImageProcessor.from_pretrained("microsoft/beit-large-patch16-224-pt22k-ft22k")
-        model = DetrForObjectDetection.from_pretrained("microsoft/beit-large-patch16-224-pt22k-ft22k")
+        processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50")
+        model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50")
 
         # Image processing
         image = image.convert("RGB")  # تأكد من أن الصورة بصيغة RGB
