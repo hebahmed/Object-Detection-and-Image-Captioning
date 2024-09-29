@@ -1,4 +1,6 @@
-torch
-transformers
 streamlit
-pillow
+transformers
+torch
+torchvision
+Pillow
+requests

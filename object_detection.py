@@ -12,7 +12,6 @@ def detect_objects(image):
         # Image processing
         image = image.convert("RGB")  # تأكد من أن الصورة بصيغة RGB
         inputs = processor(images=image, return_tensors="pt")
-        print("Object detection inputs:", inputs)
 
         # Getting results
         with torch.no_grad():  # لتقليل استخدام الذاكرة
@@ -26,7 +25,6 @@ def detect_objects(image):
         for score, label in zip(results["scores"], results["labels"]):
             detected_objects.append((model.config.id2label[label.item()], score.item()))
 
-        print("Detected objects:", detected_objects)
         return detected_objects
     except Exception as e:
         print("Error in detect_objects:", str(e))
