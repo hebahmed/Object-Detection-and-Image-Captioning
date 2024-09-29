@@ -12,6 +12,7 @@ def generate_caption(image):
 
         # تجهيز الصورة للمعالجة
         inputs = processor(images=image, return_tensors="pt")
+        print("Image inputs for captioning:", inputs)  # طباعة المدخلات المعالجة
         pixel_values = inputs['pixel_values']
 
         # إعداد attention_mask إذا كانت البيانات تحتوي على padding

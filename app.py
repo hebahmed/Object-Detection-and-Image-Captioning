@@ -17,6 +17,10 @@ if uploaded_file is not None:
         image = Image.open(uploaded_file)
         st.image(image, caption='Uploaded Image.', use_column_width=True)
 
+         # عرض معلومات الصورة
+        st.write(f"Image size: {image.size}")
+        st.write(f"Image mode: {image.mode}")
+        
         # Object detection
         detected_objects = detect_objects(image)
         st.write("Detected objects:")
