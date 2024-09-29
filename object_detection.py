@@ -1,32 +1,22 @@
 # object_detection.py
-import streamlit as st  
 from transformers import DetrImageProcessor, DetrForObjectDetection
 import torch
 from PIL import Image
 
 def detect_objects(image):
     try:
-        # Load Object Detection Model
-        print("Loading object detection model...")
+        # Load Object Detection Model on CPU
         processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50")
-        model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50")
-        print("Model loaded successfully")
+        model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50").to('cpu')
 
         # Image processing
         image = image.convert("RGB")  # تأكد من أن الصورة بصيغة RGB
-
-        # أضيفي هذا السطر لعرض الصورة بعد تحويلها
-        st.image(image, caption='Converted Image (RGB)', use_column_width=True)
-
         inputs = processor(images=image, return_tensors="pt")
         print("Object detection inputs:", inputs)
 
         # Getting results
         with torch.no_grad():  # لتقليل استخدام الذاكرة
             outputs = model(**inputs)
-
-        # أضيفي هذا السطر لعرض مخرجات النموذج
-        print("Object detection outputs:", outputs)
 
         # Processing the results to get the detected objects
         target_sizes = torch.tensor([image.size[::-1]])

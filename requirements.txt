@@ -1,4 +1,4 @@
-transformers
 torch
+transformers
 streamlit
-Pillow
+pillow
